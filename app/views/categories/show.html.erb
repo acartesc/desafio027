@@ -5,24 +5,21 @@
   <%= @category.name %>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
-
 <table>
   <tr>
     <th> Nombre </th>
     <th> Precio </th>
   </tr>
   <% @category.products.each do |product| %>
-    <tr>
-      <td> <%= product.name %> </td>
-      <td> <%= product.price %> </td>
-      <td>
-        <div class="btn btn-default">
-          <%= link_to 'Borrar', category_product_path(@category, product), method: :delete%>
-        </div>
-      </td>
-    </tr>
+  <tr>
+    <td> <%= product.name %> </td>
+    <td> <%= product.price %> </td>
+    <td>
+      <div class="btn btn-default">
+        <%= link_to 'Borrar', category_product_path(@category, product), method: :delete%>
+      </div>
+    </td>
+  </tr>
   <% end %>
 </table>
 
@@ -36,3 +33,6 @@
 
   <%= form.submit "Crear" %>
 <% end %>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
