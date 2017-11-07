@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
+
+<table>
+  <tr>
+    <th> Nombre </th>
+    <th> Precio </th>
+  </tr>
+  <% @category.products.each do |product| %>
+    <tr>
+      <td> <%= product.name %> </td>
+      <td> <%= product.price %> </td>
+      <td>
+        <div class="btn btn-default">
+          <%= link_to 'Borrar', category_product_path(@category, product), method: :delete%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
+<%= form_with model: [ @category, @product ], local: true do |form| %>
+  <%= form.label :"Nombre" %>
+  <%= form.text_area :name %>
+
+  <%= form.label :"Precio" %>
+  <%= form.number_field :price %>
+
+  <%= form.submit "Crear" %>
+<% end %>
